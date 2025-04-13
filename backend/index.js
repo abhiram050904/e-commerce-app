@@ -16,6 +16,7 @@ app.use(cors({
   }));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/products',productRoutes)
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,

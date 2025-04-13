@@ -29,4 +29,14 @@ const User =require('../models/userModel.js')
 };
 
 
-module.exports={authMiddleWare}
+const adminMiddleware=async(req,res,next)=>{
+
+  if (req.user && req.user.role === "admin") {
+		next();
+	} else {
+		return res.status(403).json({ message: "Access denied - Admin only" });
+	}
+}
+
+
+module.exports={authMiddleWare,adminMiddleware}
