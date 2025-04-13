@@ -1,9 +1,10 @@
 const express=require('express')
-const { signUp, login, logOut } = require('../controllers/authController')
-
+const { signUp, login, logOut, refreshTokenVerify, getProfile } = require('../controllers/authController')
+const {authMiddleWare}=require('../middlewares/Authmiddleware')
 const router=express.Router()
 router.post('/signup',signUp)
 router.post('/login',login)
 router.post('/logout',logOut)
-
+router.post('/refresh-token',refreshTokenVerify)
+router.get('/profile',authMiddleWare,getProfile)
 module.exports=router
